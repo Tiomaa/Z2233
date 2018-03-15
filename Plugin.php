@@ -3,7 +3,7 @@
  * 2233娘live2d插件(HandSome兼容版)
  * 
  * @package 2333
- * @author Zero/原作：犬の窝
+ * @author Zero
  * @version 1.3.0
  * @link https://lolicm.com/
  */
@@ -18,23 +18,19 @@ class Z2233_Plugin implements Typecho_Plugin_Interface
 	/* 禁用插件方法 */
 	public static function deactivate(){}
     public static function config(Typecho_Widget_Helper_Form $form){
-     echo '<p>本插件需要加载jQuery库与Font Awesome支持，如果你的主题没有引用上述项目，请选择加载。<br />关于提示语的修改，请直接编辑js/waifu-tips.js。</p>';
+     echo '<p>本插件需要加载jQuery库与Font Awesome支持，如果你的主题没有引用上述项目，请选择加载，HandSome请改为全部不启用。<br />关于提示语的修改，请直接编辑js/waifu-tips.js。</p>';
   $l2dst= new Typecho_Widget_Helper_Form_Element_Checkbox('l2dst',  array(
 'jq' => _t('配置是否加载JQ：勾选则加载不勾选则不加载'),'awesome' => _t('Font Awesome：勾选则加载不勾选则不加载'),
 ),
     array('jq','awesome'), _t('基本设置'));
         $form->addInput($l2dst);
-
     }
     
-
-
-
     public static function footer(){ if(!self::isMobile()){
         $options = Helper::options()->plugin('Z2233'); 
 		echo '<div class="l2d_xb">'; 
       if (!empty(Helper::options()->plugin('Z2233')->l2dst) && in_array('awesome', Helper::options()->plugin('Z2233')->l2dst)){
-echo '<link rel="stylesheet" href="'.Helper::options()->pluginUrl . 'https://lolicm.com/usr/themes/handsome/assets/css/handsome.min.css" type="text/css">';
+echo '<link rel="stylesheet" href="'.Helper::options()->pluginUrl . '/Z2233/css/font-awesome.min.css" type="text/css">';
       }
     echo '<link rel="stylesheet" href="'.Helper::options()->pluginUrl . '/Z2233/css/waifu.min.css" type="text/css">';
     echo '
@@ -52,8 +48,6 @@ echo '<link rel="stylesheet" href="'.Helper::options()->pluginUrl . 'https://lol
         </div>
     </div>
              ';
-
-
  if (!empty(Helper::options()->plugin('Z2233')->l2dst) && in_array('jq', Helper::options()->plugin('Z2233')->l2dst)){
 echo '<script  src="'.Helper::options()->pluginUrl . '/Z2233/js/jquery.min.js?v=2.1.4"></script>' . "\n";   }
       echo '<script>var l2d = {"xb":"'.Helper::options()->pluginUrl . '/Z2233"};</script>';
